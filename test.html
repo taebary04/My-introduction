@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>서태현 포트폴리오</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fdfdfd;
+      color: #333;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    #hero {
+      height: 100vh;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+    #hero h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      animation: slideUp 1.5s ease;
+    }
+    #hero p {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin-bottom: 40px;
+      animation: fadeIn 2s ease;
+    }
+    #hero button {
+      padding: 14px 28px;
+      background: #fff;
+      color: #2575fc;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      animation: bounceIn 2s ease;
+    }
+    #hero button:hover {
+      background: #2575fc;
+      color: #fff;
+      transform: scale(1.1);
+    }
+    #hero button:active {
+      transform: scale(0.95);
+    }
+
+    .menu {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .menu button {
+      padding: 10px 20px;
+      background: #2575fc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .menu button:hover {
+      background: #6a11cb;
+      transform: translateY(-3px);
+    }
+    .menu button:active {
+      transform: scale(0.9);
+    }
+    .menu button.active-btn {
+      background: #1f2a44;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: none;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+      animation: fadeSlideIn 0.6s ease;
+    }
+
+    h2 {
+      border-left: 5px solid #2575fc;
+      padding-left: 10px;
+      margin-bottom: 15px;
+    }
+
+    .skills span {
+      display: inline-block;
+      background: #2575fc;
+      color: #fff;
+      padding: 6px 12px;
+      margin: 5px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .skills span:hover {
+      background: #6a11cb;
+    }
+
+    body.dark {
+      background: #121212;
+      color: #eee;
+    }
+    body.dark section {
+      background: #1e1e1e;
+      color: #ddd;
+    }
+    body.dark h2 {
+      border-left-color: #90caf9;
+    }
+    body.dark .menu button {
+      background: #444;
+      color: #eee;
+    }
+    body.dark .menu button.active-btn {
+      background: #666;
+    }
+
+    .dark-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 20px;
+      background: #555;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      z-index: 1000;
+    }
+    .dark-toggle:hover {
+      background: #777;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div id="hero">
+    <h1>안녕하세요, 서태현입니다 👨‍💻</h1>
+    <p>웹페이지 개발을 공부하며<br>문제 해결을 즐기는 대학생입니다.</p>
+    <button onclick="startPortfolio()">시작하기 🚀</button>
+  </div>
+
+  <div class="menu" id="menu" style="display:none;">
+    <button onclick="showSection('intro')">자기소개</button>
+    <button onclick="showSection('skills')">기술 스택</button>
+    <button onclick="showSection('projects')">프로젝트</button>
+    <button onclick="showSection('contact')">연락처</button>
+    <button onclick="showSection('guestbook')">방명록</button>
+  </div>
+
+  <section id="intro">
+    <h2>👤 자기소개</h2>
+    <p>👨‍💻 저는 새로운 기술을 배우고</p>
+    <p>🚀 사용자 경험 개선에 열정을 가진</p>
+    <p>🎓 대학생 개발자 서태현입니다!</p>
+  </section>
+
+  <section id="skills">
+    <h2>🛠 기술 스택</h2>
+    <div class="skills">
+      <span>HTML</span><span>CSS</span><span>JavaScript</span>
+      <span>Python</span>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>📂 프로젝트</h2>
+    <ul>
+      <li>🌐 개인 홈페이지  
+          <p>HTML, CSS, JavaScript를 활용해 직접 제작한 자기소개 홈페이지입니다.</p> 
+          <p>디자인과 전환 애니메이션, 다크 모드 기능을 구현하여 사용자 경험을 고려했습니다.</p></li>
+      <li>🐙 GitHub 페이지 
+        <p>GitHub Pages를 활용해 나만의 개발 블로그/포트폴리오를 구축했습니다.</p> 
+        <p>프로젝트 기록과 학습 내용을 정리하며 꾸준히 업데이트하고 있습니다.</p></li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>📫 연락처</h2>
+    <p>Email : <a href="mailto:oth04200@naver.com">oth04200@naver.com</a></p>
+    <p>GitHub: <a href="https://github.com/taebary04" target="_blank">github.com/taebary04</a></p>
+  </section>
+
+<section id="guestbook">
+  <h2>📖 방명록</h2>
+  <form id="guestbook-form">
+    <input type="text" id="name" placeholder="이름" required
+           style="padding:8px; margin:5px; border-radius:5px; border:1px solid #ccc;">
+    <input type="text" id="message" placeholder="메시지" required
+           style="padding:8px; margin:5px; border-radius:5px; border:1px solid #ccc; width:60%;">
+    <button type="submit"
+            style="padding:8px 16px; background:#2575fc; color:#fff; border:none; border-radius:5px; cursor:pointer;">
+      남기기 ✍️
+    </button>
+  </form>
+  <ul id="guestbook-list" style="list-style:none; padding:0; margin-top:20px;"></ul>
+</section>
+
+  <button class="dark-toggle" onclick="toggleDarkMode()">🌙 다크 모드</button>
+
+  <script>
+    function startPortfolio() {
+      document.getElementById('hero').style.display = 'none';
+      document.getElementById('menu').style.display = 'flex';
+      showSection('intro');
+    }
+
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.menu button').forEach(btn => btn.classList.remove('active-btn'));
+      const targetBtn = document.querySelector(`.menu button[onclick="showSection('${id}')"]`);
+      if (targetBtn) targetBtn.classList.add('active-btn');
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+
+
+
+  const form = document.getElementById('guestbook-form');
+  const list = document.getElementById('guestbook-list');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = JSON.parse(localStorage.getItem('guestbook')) || [];
+    saved.forEach((entry, index) => addEntry(entry, index));
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const time = new Date().toLocaleString();
+
+    if(name && message) {
+      const saved = JSON.parse(localStorage.getItem('guestbook')) || [];
+      saved.push({name, message, time, replies: []});
+      localStorage.setItem('guestbook', JSON.stringify(saved));
+
+      addEntry({name, message, time, replies: []}, saved.length - 1);
+      form.reset();
+    }
+  });
+
+  function addEntry(entry, index) {
+    const li = document.createElement('li');
+    li.style.padding = "10px";
+    li.style.marginBottom = "10px";
+    li.style.background = "#f0f0f0";
+    li.style.borderRadius = "6px";
+
+    const content = document.createElement('div');
+    content.innerHTML = `<strong>${entry.name}</strong> : ${entry.message}
+      <span style="font-size:12px; color:#555; margin-left:8px;">(${entry.time})</span>
+      <button onclick="deleteEntry(${index})"
+              style="margin-left:10px; padding:4px 8px; background:#e74c3c; color:#fff; border:none; border-radius:4px; cursor:pointer;">
+        삭제 🗑️
+      </button>`;
+    li.appendChild(content);
+
+    const replyList = document.createElement('ul');
+    replyList.style.listStyle = "none";
+    replyList.style.paddingLeft = "20px";
+    entry.replies.forEach((r, ri) => {
+      const rLi = document.createElement('li');
+      rLi.style.margin = "5px 0";
+      rLi.innerHTML = `↳ ${r.message}
+        <span style="font-size:12px; color:#555; margin-left:8px;">(${r.time})</span>
+        <button onclick="deleteReply(${index}, ${ri})"
+                style="margin-left:10px; padding:2px 6px; background:#c0392b; color:#fff; border:none; border-radius:4px; cursor:pointer;">
+          삭제
+        </button>`;
+      replyList.appendChild(rLi);
+    });
+    li.appendChild(replyList);
+
+    const replyForm = document.createElement('form');
+    replyForm.innerHTML = `
+      <input type="text" placeholder="답글" required style="padding:4px; margin:4px; border-radius:4px; border:1px solid #ccc; width:50%;">
+      <button type="submit" style="padding:4px 8px; background:#2575fc; color:#fff; border:none; border-radius:4px; cursor:pointer;">답글 달기 💬</button>
+    `;
+    replyForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const rMsg = replyForm.querySelector('input[placeholder="답글"]').value.trim();
+      const rTime = new Date().toLocaleString();
+      if(rMsg) {
+        let saved = JSON.parse(localStorage.getItem('guestbook')) || [];
+        saved[index].replies.push({message: rMsg, time: rTime});
+        localStorage.setItem('guestbook', JSON.stringify(saved));
+        list.innerHTML = "";
+        saved.forEach((entry, i) => addEntry(entry, i));
+      }
+    });
+    li.appendChild(replyForm);
+
+    list.appendChild(li);
+  }
+
+  window.deleteEntry = function(index) {
+    let saved = JSON.parse(localStorage.getItem('guestbook')) || [];
+    saved.splice(index, 1);
+    localStorage.setItem('guestbook', JSON.stringify(saved));
+    list.innerHTML = "";
+    saved.forEach((entry, i) => addEntry(entry, i));
+  }
+
+  window.deleteReply = function(entryIndex, replyIndex) {
+    let saved = JSON.parse(localStorage.getItem('guestbook')) || [];
+    saved[entryIndex].replies.splice(replyIndex, 1);
+    localStorage.setItem('guestbook', JSON.stringify(saved));
+    list.innerHTML = "";
+    saved.forEach((entry, i) => addEntry(entry, i));
+  }
+  </script>
+</body>
+</html>
+
